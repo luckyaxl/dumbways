@@ -13,6 +13,9 @@ if (isset($_POST['submit'])) {
   if ($_POST['id']) {
     $removeid = $_POST['id'];
     $result = mysqli_query($mysqli, "DELETE FROM provinsi_tb WHERE id=" . $removeid);
+
+    echo "<h1>Data Removed</h1>";
+    exit();
   }
 
   if ($_POST['provinsi']) {
