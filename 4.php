@@ -33,6 +33,10 @@ if (isset($_POST['submit'])) {
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit();
   }
+
+  if ($_POST['edit']) {
+    
+  }
 }
 ?>
 <html>
@@ -45,7 +49,6 @@ if (isset($_POST['submit'])) {
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://designrevision.com/demo/shards/extra/css/shards.min.css">
-  <link rel="stylesheet" href="https://designrevision.com/demo/shards/extra/css/shards-extras.min.css">
 </head>
 
 <body>
@@ -57,13 +60,10 @@ if (isset($_POST['submit'])) {
     ?>
 
         <!-- DETAIL SECTION  -->
-
         <div class="blog section text-center mb-5">
           <h3>Detail Provinsi <?php echo $provinsi['nama']; ?></h3>
         </div>
-
         <div class="row">
-
           <div class="col-lg-4">
             <div class="card mb-3">
               <div class="p-3">
@@ -80,6 +80,12 @@ if (isset($_POST['submit'])) {
                 <small>Diresmikan pada tanggal: <br /><span class="font-weight-bold"><?php echo $provinsi['diresmikan']; ?></span></small>
                 <br />
                 <small>Berada di Pulau <span class="font-weight-bold"><?php echo $provinsi['pulau'] ?></span></small>
+                <div class="mt-3">
+                  <form action="" method="post">
+                    <input name="edit" type="hidden" value="<?php echo $provinsi['id'] ?>" />
+                    <button type="submit" name="submit" class="btn btn-primary btn-sm btn-pill btn-block font-weight-bold" data-toggle="modal" data-target="#addkab">Edit</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -108,7 +114,7 @@ if (isset($_POST['submit'])) {
                     ?>
                       <tr>
                         <td><?php echo $kab['id'] ?></td>
-                        <td><img src="<?php echo $kab['photo'] ?>" alt=".." style="height: 20px;width: 20px"/></td>
+                        <td><img src="<?php echo $kab['photo'] ?>" alt=".." style="height: 20px;width: 20px" /></td>
                         <td><?php echo $kab['nama'] ?></td>
                         <td><?php echo $kab['id'] ?></td>
                       </tr>
@@ -132,7 +138,6 @@ if (isset($_POST['submit'])) {
     } else {
       $result = mysqli_query($mysqli, "SELECT * FROM provinsi_tb");
       ?>
-
       <!-- INDEX SESSION -->
       <div class="blog section text-center mb-5">
         <h3>Provinsi dan Kabupaten</h3>
@@ -175,12 +180,10 @@ if (isset($_POST['submit'])) {
         ?>
       </div>
       <!-- END OF INDEX SESSION -->
-
     <?php
     }
     ?>
   </div>
-
   <form action="" method="post">
     <div class="modal fade" id="addprov" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -222,7 +225,6 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
   </form>
-
   <form action="" method="post">
     <div class="modal fade" id="addkab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -238,7 +240,6 @@ if (isset($_POST['submit'])) {
               <label class="small font-weight-bold">Nama Kabupaten</label>
               <input type="text" name="kabupaten" class="form-control" placeholder="Nama Kabupaten" required>
             </div>
-
             <?php
             $result = mysqli_query($mysqli, "SELECT * FROM provinsi_tb");
             ?>
@@ -257,12 +258,10 @@ if (isset($_POST['submit'])) {
             </div>
             <?
             ?>
-
             <div class="form-group">
               <label class="small font-weight-bold">Tanggal diresmikan</label>
               <input type="text" name="diresmikan" class="form-control" placeholder="Tanggal Diresmikan" required>
             </div>
-
             <div class="form-group">
               <label class="small font-weight-bold">Logo Kabupaten</label>
               <input type="text" name="photo" class="form-control" placeholder="url gambar" required>
@@ -276,7 +275,6 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
   </form>
-
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
