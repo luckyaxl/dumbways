@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
                         <td><?php echo $kab['id'] ?></td>
                         <td><img src="<?php echo $kab['photo'] ?>" alt=".." style="height: 20px;width: 20px" /></td>
                         <td><?php echo $kab['nama'] ?></td>
-                        <td><?php echo $kab['id'] ?></td>
+                        <td><?php echo $kab['diresmikan'] ?></td>
                       </tr>
                     <?php
                     }

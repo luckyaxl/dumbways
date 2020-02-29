@@ -1,13 +1,6 @@
-
-
----
-title: Write Up
-slug: write-up
----
-
 # Test Technical Bootcamp DumbWays Batch 15 Kloter 2
 
-## Solve Nomer 4. CRUD
+## Nomer 4. CRUD
 
 #### Package
 
@@ -33,6 +26,19 @@ slug: write-up
 mysql> create database testcrud;
 ```
 
+#### Membuat table provinsi_tb
+
+```bash
+mysql> create table provinsi_tb(
+    -> id int NOT NULL AUTO_INCREMENT,
+    -> nama varchar (50) NOT NULL,
+    -> diresmikan varchar (50) NOT NULL,
+    -> photo varchar (10000) NOT NULL,
+    -> pulau varchar (100) NOT NULL,
+    -> PRIMARY KEY (id)
+    -> );
+```
+
 #### Membuat table kabupaten_tb
 
 ```bash
@@ -44,21 +50,6 @@ mysql> create table kabupaten_tb(
     -> photo varchar (1000) NOT NULL,
     -> PRIMARY KEY (id)
     -> );
-
-```
-
-#### Membuat table provinsi_tb
-
-```bash
-mysql> create table kabupaten_tb(
-    -> id int NOT NULL AUTO_INCREMENT,
-    -> nama varchar (100) NOT NULL,
-    -> provinsi_id int (100) NOT NULL,
-    -> diresmikan varchar (100) NOT NULL,
-    -> photo varchar (1000) NOT NULL,
-    -> PRIMARY KEY (id)
-    -> );
-
 ```
 
 #### Screenshot
@@ -82,5 +73,5 @@ php -S localhost:8080
 
 ![](Screenshot_20200229_204253.png)
 
-![](Screenshot_20200229_204344.png)
+![](Screenshot_20200229_205605.png)
 
