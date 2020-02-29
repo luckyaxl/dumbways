@@ -75,3 +75,7 @@ php -S localhost:8080
 
 ![](Screenshot_20200229_205605.png)
 
+#### Sample Data hasil query POST
+
+![](Screenshot_20200229_214100.png)
+

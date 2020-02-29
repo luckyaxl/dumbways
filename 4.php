@@ -5,7 +5,7 @@
 $databaseHost = 'localhost';
 $databaseName = 'testcrud';
 $databaseUsername = 'root';
-$databasePassword = '';
+$databasePassword = 'zer0cod3';
 
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
