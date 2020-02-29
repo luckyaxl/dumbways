@@ -1,8 +1,11 @@
 <?php
+
+// Luckyaxl
+
 $databaseHost = 'localhost';
 $databaseName = 'testcrud';
 $databaseUsername = 'root';
-$databasePassword = 'zer0cod3';
+$databasePassword = '';
 
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
