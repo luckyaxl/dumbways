@@ -56,7 +56,7 @@ mysql> create table kabupaten_tb(
 
 ![](Screenshot_20200229_184041.png)
 
-#### Menajalankan server localhost
+#### Menjalankan server localhost
 
 ```bash
 php -S localhost:8080
