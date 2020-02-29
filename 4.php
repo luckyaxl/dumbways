@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $diresmikan = $_POST['diresmikan'];
     $photo = $_POST['photo'];
 
-    $result = mysqli_query($mysqli, "INSERT INTO kabupaten_tb(nama,,provinsi_id,diresmikan,photo) VALUES('$nama','$provid','$diresmikan','$photo')");
+    $result = mysqli_query($mysqli, "INSERT INTO kabupaten_tb(nama,provinsi_id,diresmikan,photo) VALUES('$nama','$provid','$diresmikan','$photo')");
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit();
   }
@@ -62,24 +62,67 @@ if (isset($_POST['submit'])) {
           <h3>Detail Provinsi <?php echo $provinsi['nama']; ?></h3>
         </div>
 
-        <div class="col-lg-3 col-sm-6 px-2">
-          <div class="card mb-3">
-            <div class="p-3">
-              <form action="" method="post">
-                <input name="id" type="hidden" value="<?php echo $provinsi['id'] ?>" />
-                <button type="submit" name="submit" class="btn btn-danger btn-sm btn-pill float-right font-weight-bold">Delete</button>
-              </form>
-            </div>
-            <div class="card-body">
-              <div class="text-center mb-3">
-                <img class="img-fluid" style="width: 100px;" src="<?php echo $provinsi['photo'] ?>" />
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card mb-3">
+              <div class="p-3">
+                <form action="" method="post">
+                  <input name="id" type="hidden" value="<?php echo $provinsi['id'] ?>" />
+                  <button type="submit" name="submit" class="btn btn-danger btn-sm btn-pill float-right font-weight-bold">Delete</button>
+                </form>
               </div>
-              <p class="font-weight-bold mb-0"><?php echo $provinsi['nama']; ?></p>
-              <small>Diresmikan pada tanggal: <br /><span class="font-weight-bold"><?php echo $provinsi['diresmikan']; ?></span></small>
-              <br />
-              <small>Berada di Pulau <span class="font-weight-bold"><?php echo $provinsi['pulau'] ?></span></small>
+              <div class="card-body">
+                <div class="text-center mb-3">
+                  <img class="img-fluid" style="width: 100px;" src="<?php echo $provinsi['photo'] ?>" />
+                </div>
+                <p class="font-weight-bold mb-0"><?php echo $provinsi['nama']; ?></p>
+                <small>Diresmikan pada tanggal: <br /><span class="font-weight-bold"><?php echo $provinsi['diresmikan']; ?></span></small>
+                <br />
+                <small>Berada di Pulau <span class="font-weight-bold"><?php echo $provinsi['pulau'] ?></span></small>
+              </div>
             </div>
           </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <p class="font-weight-bold">Daftar Kabupaten di Provinsi <?php echo $provinsi['nama'] ?></p>
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Logo</th>
+                      <th>Nama Kabupaten</th>
+                      <th>Diresmikan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+
+                    $prov = $provinsi['id'];
+
+                    $table = mysqli_query($mysqli, "SELECT * from kabupaten_tb WHERE provinsi_id=$prov");
+                    while ($kab = mysqli_fetch_array($table)) {
+                    ?>
+                      <tr>
+                        <td><?php echo $kab['id'] ?></td>
+                        <td><img src="<?php echo $kab['photo'] ?>" alt=".." style="height: 20px;width: 20px"/></td>
+                        <td><?php echo $kab['nama'] ?></td>
+                        <td><?php echo $kab['id'] ?></td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- END OF DETAIL SECTION  -->
@@ -143,25 +186,30 @@ if (isset($_POST['submit'])) {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Provinsi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
+
             <div class="form-group">
+              <label class="small font-weight-bold">Nama Provinsi</label>
               <input type="text" name="provinsi" class="form-control" placeholder="Nama Provinsi" required>
             </div>
 
             <div class="form-group">
+              <label class="small font-weight-bold">Tanggal Diresmikan</label>
               <input type="text" name="diresmikan" class="form-control" placeholder="Tanggal Diresmikan" required>
             </div>
 
             <div class="form-group">
+              <label class="small font-weight-bold">Logo Provinsi</label>
               <input type="text" name="photo" class="form-control" placeholder="url gambar" required>
             </div>
 
             <div class="form-group">
+              <label class="small font-weight-bold">Nama Pulau</label>
               <input type="text" name="pulau" class="form-control" placeholder="Nama Pulau" required>
             </div>
 
@@ -180,13 +228,14 @@ if (isset($_POST['submit'])) {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Kabupaten</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="form-group">
+              <label class="small font-weight-bold">Nama Kabupaten</label>
               <input type="text" name="kabupaten" class="form-control" placeholder="Nama Kabupaten" required>
             </div>
 
@@ -194,12 +243,13 @@ if (isset($_POST['submit'])) {
             $result = mysqli_query($mysqli, "SELECT * FROM provinsi_tb");
             ?>
             <div class="form-group">
-              <select class="form-control" name="query">
+              <label class="small font-weight-bold">Provinsi</label>
+              <select name="provinsi_id" class="form-control">
                 <option value="" selected>Pilih Provinsi</option>
                 <?php
                 while ($provinsi = mysqli_fetch_array($result)) {
                 ?>
-                  <option name="provinsi_id" value="<?php echo $provinsi['nama'] ?>"><?php echo $provinsi['nama'] ?></option>
+                  <option value="<?php echo $provinsi['id'] ?>"><?php echo $provinsi['nama'] ?></option>
                 <?php
                 }
                 ?>
@@ -209,10 +259,12 @@ if (isset($_POST['submit'])) {
             ?>
 
             <div class="form-group">
+              <label class="small font-weight-bold">Tanggal diresmikan</label>
               <input type="text" name="diresmikan" class="form-control" placeholder="Tanggal Diresmikan" required>
             </div>
 
             <div class="form-group">
+              <label class="small font-weight-bold">Logo Kabupaten</label>
               <input type="text" name="photo" class="form-control" placeholder="url gambar" required>
             </div>
           </div>
